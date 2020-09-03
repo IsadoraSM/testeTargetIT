@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             SectorsTableSeeder::class,
             LocalsTableSeeder::class,
             RoomsTableSeeder::class,
+            UsersTableSeeder::class,
         ]);
     }
 }
