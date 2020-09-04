@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use App\Models\Profile;
+use App\Models\Sector;
 
 class RegisterController extends Controller
 {
@@ -56,6 +58,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'phone' => ['required', 'string', 'max:14','min:10'],
+            'profile_id' => ['required'],
+            'sector_id' => ['required'],
         ]);
     }
 
@@ -71,9 +76,18 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'phone' => $data['phone'],
+            'profile_id' => $data['profile_id'],
+            'sector_id' => $data['sector_id'],
         ]);
     }
 
+    /**
+     * Handle a registration request for the application.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function register(Request $request)
     {
         $this->validator($request->all())->validate();
@@ -87,5 +101,23 @@ class RegisterController extends Controller
         return $request->wantsJson()
                     ? new Response('', 201)
                     : redirect($this->redirectPath());
+    }
+
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        $profiles = Profile::select('id', 'name')
+                            ->orderBy('name')
+                            ->get();
+
+        $sectors = Sector::select('id', 'name')
+                            ->orderBy('name')
+                            ->get();
+
+        return view('auth.register', compact('profiles', 'sectors'));
     }
 }

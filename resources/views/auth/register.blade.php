@@ -40,6 +40,67 @@
                         </div>
 
                         <div class="form-group row">
+                            <label for="phone" class="col-md-4 col-form-label text-md-right">Telefone</label>
+
+                            <div class="col-md-6">
+                                <input id="phone" type="phone" class="form-control @error('phone') is-invalid @enderror" name="phone" 
+                                        value="{{ old('phone') }}" required autocomplete="phone" maxlength="14" placeholder="(99)99999-9999">
+
+                                @error('phone')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="profile_id" class="col-md-4 col-form-label text-md-right">Perfil</label>
+
+                            <div class="col-md-6">
+                                <select id="profile_id" name="profile_id" class="form-control  @error('profile_id') is-invalid @enderror" required>
+                                    <option value="" disabled selected>
+                                        Selecione
+                                    </option>
+                                    @foreach($profiles as $profile)
+                                        <option value="{{$profile->id}}" {{ (old("profile_id") == $profile->id ? "selected":"") }}>
+                                            {{$profile->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+
+                                @error('profile_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="sector_id" class="col-md-4 col-form-label text-md-right">Setor</label>
+
+                            <div class="col-md-6">
+                                <select id="sector_id" name="sector_id" class="form-control  @error('sector_id') is-invalid @enderror" required>
+                                    <option value="" disabled selected>
+                                        Selecione
+                                    </option>
+                                    @foreach($sectors as $sector)
+                                        <option value="{{$sector->id}}" {{ (old("sector_id") == $sector->id ? "selected":"") }}>
+                                            {{$sector->name}}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                
+                                @error('sector_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
 
                             <div class="col-md-6">
