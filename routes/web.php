@@ -20,3 +20,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix' => 'sector', 'middleware' => ['auth', 'check.profile'] ], function () {
+    Route::get('/create', 'SectorController@create')->name('sector.create');
+    Route::post('/store', 'SectorController@store')->name('sector.store');
+});
