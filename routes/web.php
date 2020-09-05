@@ -21,7 +21,11 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::group(['prefix' => 'sector', 'middleware' => ['auth', 'check.profile'] ], function () {
-    Route::get('/create', 'SectorController@create')->name('sector.create');
-    Route::post('/store', 'SectorController@store')->name('sector.store');
+Route::group([ 'middleware' => 'auth' ], function () {
+    Route::group(['prefix' => 'sector', 'middleware' => 'check.profile'], function () {
+        Route::get('/create', 'SectorController@create')->name('sector.create');
+        Route::post('/store', 'SectorController@store')->name('sector.store');
+    });
+
+    Route::get('/schedule', 'ScheduleController@index')->name('schedule.index');
 });

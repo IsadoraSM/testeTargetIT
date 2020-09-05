@@ -15,6 +15,7 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/0db9cca29f.js" crossorigin="anonymous"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -49,6 +50,9 @@
                                 </li>
                             @endif
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('schedule.index') }}">Agendar uma reunião</a>
+                            </li>
                             @if(Auth::user()->profile->name == "Master")
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('register') }}">Registrar novo usuário</a>
