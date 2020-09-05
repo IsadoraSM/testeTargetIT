@@ -53,14 +53,20 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('schedule.index') }}">Agendar uma reunião</a>
                             </li>
+                            
                             @if(Auth::user()->profile->name == "Master")
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">Registrar novo usuário</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('sector.create') }}">Registrar novo setor</a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" id="navbarDropdownRegister" href="#" role="button" 
+                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                            Registrar
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownRegister">
+                                        <a class="dropdown-item" href="{{ route('register') }}">Usuário</a>
+                                        <a class="dropdown-item" href="{{ route('sector.create') }}">Setor</a>
+                                    </div>
                                 </li>
                             @endif
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
