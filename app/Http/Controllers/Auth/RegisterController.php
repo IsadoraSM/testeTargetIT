@@ -110,12 +110,10 @@ class RegisterController extends Controller
      */
     public function showRegistrationForm()
     {
-        $profiles = Profile::select('id', 'name')
-                            ->orderBy('name')
+        $profiles = Profile::orderBy('name')
                             ->get();
 
-        $sectors = Sector::select('id', 'name')
-                            ->orderBy('name')
+        $sectors = Sector::orderBy('name')
                             ->get();
 
         return view('auth.register', compact('profiles', 'sectors'));
