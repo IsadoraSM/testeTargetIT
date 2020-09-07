@@ -27,7 +27,7 @@
                                             <tr>
                                                 <td>{{$room->local->name}}</td>
                                                 <td>{{$room->name}}</td>
-                                                <td>{{$date}}</td>
+                                                <td>{{date('d/m/Y', strtotime($date))}}</td>
                                                 <td>{{$starting_time}}</td>
                                                 <td>{{$ending_time}}</td>
                                                 <td>
