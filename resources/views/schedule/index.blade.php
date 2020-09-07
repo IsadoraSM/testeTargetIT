@@ -14,6 +14,9 @@
                                     <tr>
                                         <th scope="col">Local</th>
                                         <th scope="col">Sala</th>
+                                        <th scope="col">Data</th>
+                                        <th scope="col">Início</th>
+                                        <th scope="col">Fim</th>
                                         <th scope="col">Ação</th>
                                     </tr>
                                 </thead>
@@ -23,6 +26,9 @@
                                             <tr>
                                                 <td>{{$room->local->name}}</td>
                                                 <td>{{$room->name}}</td>
+                                                <td>{{$date}}</td>
+                                                <td>{{$starting_time}}</td>
+                                                <td>{{$ending_time}}</td>
                                                 <td>
                                                     <button class="btn btn-success"> Agendar </button>
                                                 </td>
