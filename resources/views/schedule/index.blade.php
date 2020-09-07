@@ -8,6 +8,7 @@
                 <div class="card-header">Agendamento de horário</div>
                     <div class="card-body">
                         @include('schedule.partials.filter')
+                        @include('schedule.partials.error')
                         <div class="table-reponsive mt-4">
                             <table class="table table-striped table-hover">
                                 <thead>
