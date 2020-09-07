@@ -35,4 +35,9 @@ class User extends Authenticatable
     public function sector(){
         return $this->belongsTo('App\Models\Sector');
     }
+
+    public function schedules()
+    {
+        return $this->hasMany('App\Models\Schedule');
+    }
 }
