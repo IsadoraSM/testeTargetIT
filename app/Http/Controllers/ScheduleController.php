@@ -53,9 +53,9 @@ class ScheduleController extends Controller
                         ->orWhereBetween('schedules.ending_time', [$starting_time, $ending_time]);
                     });
                 })->where(function ($query) use ($local) {
-                if($local){
-                $query->where('local_id', $local);
-                }
+                    if($local){
+                        $query->where('local_id', $local);
+                    }
                 })->get();
             }
         }
@@ -64,5 +64,30 @@ class ScheduleController extends Controller
                         ->get();
 
         return view('schedule.index', compact('rooms', 'locals', 'local', 'date', 'starting_time', 'ending_time', 'error'));
+    }
+
+    /**
+     * Registra um novo agendamento no banco
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $local = Local::where('name', $request->local)->first();
+
+        $room = Room::where('name', $request->room)
+                        ->where('local_id', $local->id)
+                        ->first();
+
+        Schedule::create([
+            'user_id' => $request->user_id,
+            'date' => $request->date,
+            'starting_time' => $request->starting_time,
+            'ending_time' => $request->ending_time,
+            'room_id' => $room->id,
+        ]);
+
+        return;
     }
 }

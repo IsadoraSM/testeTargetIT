@@ -4,12 +4,10 @@ function filterSubmit(e){
 
 //adiciona horário minímo de início caso o agendamento seja na data atual
 function inputDate(){
-    console.log('inputDate');
     let date = document.getElementById("date").value;
 
     if(date){
         const today = currentDate();
-        console.log(today, date);
         if(date == today){
             const now = currentTime();
             document.getElementById("starting_time").min = now;
@@ -56,4 +54,60 @@ function currentTime(){
     now = hh + ':' + mm;
 
     return now;   
+}
+
+//captura os dados do agendamento
+function scheduleButton(obj){
+    //Referência da linha
+    let objTR = obj.parentNode.parentNode;
+
+    let local = objTR.cells[0].textContent;
+    let room = objTR.cells[1].textContent;
+    let date = objTR.cells[2].textContent;
+    let startingTime = objTR.cells[3].textContent;
+    let endingTime = objTR.cells[4].textContent;
+
+    confirmSchedule(local, room, date, startingTime, endingTime);
+}
+
+//Exibe um Sweet Alert para o usuário confirmar as informações do agendamento
+function confirmSchedule(local, room, date, startingTime, endingTime){
+    swal({
+        title: "Confirme as informações do agendamento",
+        text: 'Local: ' + local + ', ' + room + ', data: ' 
+                + date + ', início: '+ startingTime + ', fim: ' + endingTime,
+        icon: "warning",
+        buttons: ["Cancelar", "Confirmar"],
+      })
+      .then((willDelete) => {
+        if (willDelete) {
+            schedule(local, room, date, startingTime, endingTime);
+        } else {
+          swal("Ação cancelada!");
+        }
+    });
+}
+
+//Realiza o agendamento
+function schedule(local, room, date, startingTime, endingTime){
+    const user_id = document.getElementById("user_id").value;
+
+    let dateFormat = new Date(date)
+    const dateTimeFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: '2-digit', day: '2-digit' })
+    const [{ value: month },,{ value: day },,{ value: year }] = dateTimeFormat .formatToParts(dateFormat )
+    
+    date = `${year}-${day}-${month}`;
+    
+    data = {
+        user_id,
+        local,
+        room,
+        date,
+        starting_time: startingTime,
+        ending_time: endingTime
+    }
+
+    $.post("api/schedule/store", data, function(data){
+        window.location.replace('home');
+    });
 }

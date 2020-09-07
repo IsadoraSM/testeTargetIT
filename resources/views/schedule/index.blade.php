@@ -31,13 +31,15 @@
                                                 <td>{{$starting_time}}</td>
                                                 <td>{{$ending_time}}</td>
                                                 <td>
-                                                    <button class="btn btn-success"> Agendar </button>
+                                                    <button class="btn btn-success" onclick="scheduleButton(this);">
+                                                        Agendar 
+                                                    </button>
                                                 </td>
                                             </tr>
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="3" style="vertical-align : middle; text-align:center;">
+                                            <td colspan="6" style="vertical-align : middle; text-align:center;">
                                                 Preencha o filtro para carregar as salas disponíveis
                                             </td>
                                         </tr>
@@ -54,4 +56,5 @@
 
 @section('js')
     <script src="{{ asset('js/schedule.js') }}"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 @endsection

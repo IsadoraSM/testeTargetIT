@@ -1,4 +1,6 @@
 <form id="filter-form" action="{{route('schedule.index')}}" method="GET" onsubmit= "return filterSubmit(event)">
+    <input type="text" name="user_id" id="user_id" disabled value="{{Auth::user()->id}}" hidden>
+
     <div class="row">
         <div class="col-md-2">
             <label for="local" class="form-label">Local da reunião</label>
@@ -17,7 +19,6 @@
             <label for="date" class="form-label">Data da reunião*</label>
             <input type="date" class="form-control" id="date" name="date" 
                     min="{{ date('Y-m-d') }}" required onblur="inputDate()" value="{{old('date')}}">
-
         </div>
         <div class="col-md-3">
             <label for="starting_time" class="form-label">Horário de início*</label>
