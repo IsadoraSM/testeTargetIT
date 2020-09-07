@@ -15,15 +15,18 @@
         </div>
         <div class="col-md-3">
             <label for="date" class="form-label">Data da reunião*</label>
-            <input type="date" class="form-control" id="date" name="date" min="{{ date('Y-m-d') }}" required>
+            <input type="date" class="form-control" id="date" name="date" 
+                    min="{{ date('Y-m-d') }}" required onblur="inputDate()" value="{{old('date')}}">
+
         </div>
         <div class="col-md-3">
-            <label for="ending_time" class="form-label">Horário de início*</label>
-            <input type="time" class="form-control" name="starting_time" id="starting_time" required>
+            <label for="starting_time" class="form-label">Horário de início*</label>
+            <input type="time" class="form-control" name="starting_time" 
+                    id="starting_time" required onblur="inputStartingTime()" value="{{old('starting_time')}}">
         </div>
         <div class="col-md-3">
             <label for="ending_time" class="form-label">Horário de término*</label>
-            <input type="time" class="form-control" name="ending_time" id="ending_time" required>
+            <input type="time" class="form-control" name="ending_time" id="ending_time" required value="{{old('ending_time')}}">
         </div>
         <div class="col-md-1 d-flex align-items-center">
             <button class="btn btn-primary" type="submit">
