@@ -17,17 +17,33 @@
         </div>
         <div class="col-md-3">
             <label for="date" class="form-label">Data da reunião*</label>
-            <input type="date" class="form-control" id="date" name="date" 
+            <input type="date" class="form-control @error('date') is-invalid @enderror" id="date" name="date" 
                     min="{{ date('Y-m-d') }}" required onblur="inputDate()" value="{{old('date')}}">
+            @error('date')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
         <div class="col-md-3">
             <label for="starting_time" class="form-label">Horário de início*</label>
-            <input type="time" class="form-control" name="starting_time" 
+            <input type="time" class="form-control @error('starting_time') is-invalid @enderror" name="starting_time" 
                     id="starting_time" required onblur="inputStartingTime()" value="{{old('starting_time')}}">
+            @error('starting_time')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
         <div class="col-md-3">
             <label for="ending_time" class="form-label">Horário de término*</label>
-            <input type="time" class="form-control" name="ending_time" id="ending_time" required value="{{old('ending_time')}}">
+            <input type="time" class="form-control @error('ending_time') is-invalid @enderror" name="ending_time" 
+                    id="ending_time" required value="{{old('ending_time')}}">
+            @error('ending_time')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
         <div class="col-md-1 d-flex align-items-center">
             <button class="btn btn-primary" type="submit">

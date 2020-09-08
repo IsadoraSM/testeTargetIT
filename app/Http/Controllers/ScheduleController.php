@@ -7,6 +7,7 @@ use App\Models\Local;
 use App\Models\Room;
 use App\Models\Schedule;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ScheduleController extends Controller
 {
@@ -27,10 +28,38 @@ class ScheduleController extends Controller
         $error = null;
 
         if($request->_token){
+
             $local = $request->local;
             $date = $request->date;
             $starting_time = $request->starting_time;
             $ending_time = $request->ending_time;
+
+            //verifica se a data informada é igual a data de hoje
+            if($date == date('Y-m-d')){
+                $rulesStartingTime = 'required|date_format:H:i|after_or_equal:'.date('H:i');
+            }else{
+                $rulesStartingTime = 'required|date_format:H:i';
+            }
+
+            //calcula o horário máximo de término da reunião
+            $timestamp = strtotime($starting_time) + 60*60;
+            $ruleEndingTimeMax = date('H:i', $timestamp);
+            $teste = 'required|date_format:H:i|after:starting_time|before_or_equal:'. $ruleEndingTimeMax;
+
+            $rules = [
+                'date' => 'required|after_or_equal: today|date_format:Y-m-d',
+                'starting_time' => $rulesStartingTime,
+                'ending_time' => 'required|date_format:H:i|after:starting_time|before_or_equal:'. date('H:i', $timestamp),
+            ];
+
+            $messages = [
+                'required' => 'Campo obrigatório.',
+                'date.after_or_equal' => 'A data informada deve ser igual ou posterior a data atual.',
+                'ending_time.before_or_equal' => 'A duração da reunião não pode ser superior a uma hora.',
+                'ending_time.after' => 'O horário de termino da reunião deve ser uma hora posterior a hora de início.'
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages)->validate();
 
             $checkDate = Schedule::where('user_id', Auth::user()->id)
                                     ->where('date', $date)
