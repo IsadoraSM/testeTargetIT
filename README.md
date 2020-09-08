@@ -1,61 +1,70 @@
-<p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
+# TargetIT - Reuniões 
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Preparação do ambiente
 
-## About Laravel
+- 1) Renomeie o arquivo ".env.example" para ".env" e configure o MYSQL com os dados corretos.
+- 2) No terminal, execute o comando (sem aspas): "composer install" - Assim, será instalada as dependências do laravel.
+- 3) Após instalar as dependências do LARAVEL, execute no terminal (sem aspas): "php artisan key:generate" - Para gerar sua chave de aplicação parar encriptar seus dados.
+- 4) No terminal, execute o comando (sem aspas): "npm install" - Assim, será instalada as demais dependências.
+- 5) No terminal, execute o comando (sem aspas): "php artisan migrate --seed" - Para gerar tabelas e alimentar o banco de dados.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Obs.: É necessário que o seu ambiente de produção tenha o PHP 7.2+ configurado. (Para usuários Windows, utilize o Wamp.)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Formas de uso
+### Login Master
+- Email: admin@gmail.com
+- Senha: admin123456
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+O sistema inicia na tela de visualização de agendamentos. O Topbar possui as seguintes opções: 
+- Agendar uma reunião;
+- Registrar, que, ao clicar, te dará opção "Usuário" e "Setor";
+- Seu nome de usuário, que, ao clicar, te dará opção de sair do sistema.
+#### Registrar só está disponível para o usuário Master!
 
-## Learning Laravel
+### Tela para Agendar uma reunião
+Clicando em "Agendar uma reunião", você irá para a tela que te permite visualizar as salas disponíveis para agendamento.
+- Primeiro, você precisará preencher os dados do filtro ( Local da reunião, Data da reunião, Horário de início e término), e clicar na Lupa para aplicar o filtro;
+- Após aplicar o filtro, aparecerão as salas disponíveis para agendar. Para agendar, basta clicar em "Agendar";
+- Após clicar em "Agendar", surgirá uma tela para visualizar as informações do agendamento, com opções de "Confirmar" e "Cancelar";
+- Se confirmado, o agendamento será salvo no banco de dados e você será redirecionado para a tela inicial, onde constará o seu agendamento;
+- Se cancelado, nada ocorrerá e será cancelada a operação.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Há regras para agendamento:
+- Você só pode agendar uma sala por dia. Caso tente filtrar novamente com uma data que já possui agendamento, aparecerá uma mensagem "Você já possui uma sala de reunião agendada no dia informado (xx/xx/xxxx)";
+- O agendamento não pode ser superior a 1h (uma hora).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Tela de Registro de Usuário e Setor
+- Tela de Registro de Usuário:
+Clicando em "Registrar" e selecionando "Usuário", você será redirecionado para a tela de registro de usuário.
 
-## Laravel Sponsors
+As informações necessárias para registro são:
+- Nome Completo;
+- Email;
+- Telefone;
+- Perfil;
+- Setor;
+- Senha (de 8 (oito) caracteres);
+- Confirmação de senha.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+Após inserir corretamente cada campo, basta clicar em "Registrar" para concluir a operação. Após isso, já será possível logar com o novo usuário.
 
-### Premium Partners
+- Tela de Registro de Setor:
+Clicando em "Registrar" e selecionando "Setor", você será redirecionado para a tela de registro de setor.
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
+Nela, é necessário informar o nome do Setor. Inserido o nome, clique em "Registrar" para concluir a operação. Após isso, já será possível selecionar o setor ao cadastrar um novo Usuário.
 
-## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## Questões
 
-## Code of Conduct
+### Requisitos Funcionais:
+- São as exigências e funções que o software deve atender e realizar.
+Exemplos:
+- 1) O sistema deve gerenciar as salas de reuniões;
+- 2) O sistema deve permitir que o usuário faça login;
+- 3) O sistema deve permitir que o usuário master faça cadastro de novos setores.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+### Requisitos Não Funcionais:
+- São os requisitos relacionados a como as funcionalidades serão entregues ao usuário.
+- 1) O sistema deve se comunicar com o banco MySQL;
+- 2) O sistema deve ser desenvolvido utilizando as linguagens PHP e JavaScript;
+- 3) O sistema deve ser desenvolvido seguindo o conceito S.O.L.I.D.
