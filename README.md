@@ -2,13 +2,13 @@
 
 ## Preparação do ambiente
 
-- 1) Renomeie o arquivo ".env.example" para ".env" e configure o MYSQL com os dados corretos.
-- 2) No terminal, execute o comando (sem aspas): "composer install" - Assim, será instalada as dependências do laravel.
-- 3) Após instalar as dependências do LARAVEL, execute no terminal (sem aspas): "php artisan key:generate" - Para gerar sua chave de aplicação parar encriptar seus dados.
-- 4) No terminal, execute o comando (sem aspas): "npm install" - Assim, será instalada as demais dependências.
-- 5) No terminal, execute o comando (sem aspas): "php artisan migrate --seed" - Para gerar tabelas e alimentar o banco de dados.
+1) Renomeie o arquivo ".env.example" para ".env" e configure o MYSQL com os dados corretos.
+2) No terminal, execute o comando (sem aspas): "composer install" - Assim, será instalada as dependências do laravel.
+3) Após instalar as dependências do LARAVEL, execute no terminal (sem aspas): "php artisan key:generate" - Para gerar sua chave de aplicação parar encriptar seus dados.
+4) No terminal, execute o comando (sem aspas): "npm install" - Assim, será instalada as demais dependências.
+5) No terminal, execute o comando (sem aspas): "php artisan migrate --seed" - Para gerar tabelas e alimentar o banco de dados.
 
-Obs.: É necessário que o seu ambiente de produção tenha o PHP 7.2+ configurado. (Para usuários Windows, utilize o Wamp.)
+__Obs.:__ É necessário que o seu ambiente de produção tenha o PHP 7.2+ configurado. (Para usuários Windows, utilize o Wamp.)
 
 ## Formas de uso
 ### Login Master
@@ -59,12 +59,12 @@ Nela, é necessário informar o nome do Setor. Inserido o nome, clique em "Regis
 ### Requisitos Funcionais:
 - São as exigências e funções que o software deve atender e realizar.
 Exemplos:
-- 1) O sistema deve gerenciar as salas de reuniões;
-- 2) O sistema deve permitir que o usuário faça login;
-- 3) O sistema deve permitir que o usuário master faça cadastro de novos setores.
+1) O sistema deve gerenciar as salas de reuniões;
+2) O sistema deve permitir que o usuário faça login;
+3) O sistema deve permitir que o usuário master faça cadastro de novos setores.
 
 ### Requisitos Não Funcionais:
 - São os requisitos relacionados a como as funcionalidades serão entregues ao usuário.
-- 1) O sistema deve se comunicar com o banco MySQL;
-- 2) O sistema deve ser desenvolvido utilizando as linguagens PHP e JavaScript;
-- 3) O sistema deve ser desenvolvido seguindo o conceito S.O.L.I.D.
+1) O sistema deve se comunicar com o banco MySQL;
+2) O sistema deve ser desenvolvido utilizando as linguagens PHP e JavaScript;
+3) O sistema deve ser desenvolvido seguindo o conceito S.O.L.I.D.
